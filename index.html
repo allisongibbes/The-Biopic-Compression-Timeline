@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Biopic Compression Timeline</title>
+    <style>
+        body {
+            background-color: #22272e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #f1e800;
+            margin-bottom: 5px;
+        }
+        p.instructions {
+            color: #adbac7;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 600px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 700px;
+            background-color: #2d333b;
+            border: 2px solid #444c56;
+            border-radius: 8px;
+            padding: 20px;
+            gap: 20px;
+        }
+        .screen {
+            background-color: #1c2128;
+            border: 2px solid #f1e800;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .act-title {
+            color: #f1e800;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            border-bottom: 1px solid #444c56;
+            padding-bottom: 5px;
+        }
+        .timeline-details {
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .status-tag {
+            display: inline-block;
+            background-color: #444c56;
+            color: #f1e800;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .controls-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #22272e;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        label {
+            font-weight: bold;
+            color: #f1e800;
+            font-size: 14px;
+        }
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #f1e800;
+        }
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #adbac7;
+        }
+        .tradeoff-box {
+            background-color: #373e47;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #f1e800;
+        }
+        .tradeoff-box h4 {
+            margin: 0 0 5px 0;
+            color: #f1e800;
+        }
+        .tradeoff-box p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>The Biopic Compression Timeline</h2>
+    <p class="instructions">Adjust the slider to compress 40 years of a real historical subject's life into a standard 3-act Hollywood movie structure, observing which facts must be cut or merged.</p>
+
+    <div class="container">
+        <!-- Visual Screen -->
+        <div class="screen">
+            <span id="act-tag" class="status-tag">Act I: The Setup</span>
+            <h3 id="display-title" class="act-title">Real Life: Years 1 - 10 (Childhood &amp; Early Struggles)</h3>
+            <p id="display-desc" class="timeline-details">In actual history, the subject spends a decade drifting through multiple mundane jobs, minor setbacks, and unrecorded failed experiments across various cities.</p>
+        </div>
+
+        <!-- Slider Control -->
+        <div class="controls-group">
+            <label for="compression-slider">Movie Structure Phase: <span id="slider-val">Act I (Setup)</span></label>
+            <input type="range" id="compression-slider" min="0" max="2" value="0" step="1" oninput="updateTimelineState()">
+            <div class="slider-labels">
+                <span>Act I (Setup)</span>
+                <span>Act II (Confrontation)</span>
+                <span>Act III (Resolution)</span>
+            </div>
+        </div>
+
+        <!-- Cinematic Trade-off Box -->
+        <div class="tradeoff-box">
+            <h4 id="tradeoff-title">Cinematic Adaptation Strategy</h4>
+            <p id="tradeoff-desc">To fit standard screenwriting rules, 10 years of history are compressed into a 15-minute introductory sequence. Minor mentors are merged into a single composite character to streamline the narrative.</p>
+        </div>
+    </div>
+
+    <script>
+        const timelineStates = [
+            {
+                tag: "Act I: The Setup",
+                title: "Real Life: Years 1 - 10 (Childhood & Early Struggles)",
+                desc: "In actual history, the subject spends a decade drifting through multiple mundane jobs, minor setbacks, and unrecorded failed experiments across various cities.",
+                tradeoffTitle: "Cinematic Adaptation Strategy (Act I)",
+                tradeoffDesc: "To fit standard screenwriting rules, 10 years of history are compressed into a 15-minute introductory sequence. Minor mentors are merged into a single composite character to streamline the narrative.",
+                label: "Act I (Setup)"
+            },
+            {
+                tag: "Act II: The Confrontation",
+                title: "Real Life: Years 11 - 30 (The Long, Gradual Climb)",
+                desc: "Real life features slow, incremental progress, repeated administrative roadblocks, false starts, and long periods where nothing dramatic happens.",
+                tradeoffTitle: "Cinematic Adaptation Strategy (Act II)",
+                tradeoffDesc: "Hollywood compression requires a 'Midpoint Crisis.' Screenwriters invent a high-stakes dramatic confrontation and accelerate timeline events so the subject faces their ultimate rival years earlier than they actually did.",
+                label: "Act II (Confrontation)"
+            },
+            {
+                tag: "Act III: The Resolution",
+                title: "Real Life: Years 31 - 40+ (Later Success & Legacy)",
+                desc: "Actual history shows a messy, prolonged twilight era with legal disputes, quiet retirement, and gradual public acceptance rather than a single explosive climax.",
+                tradeoffTitle: "Cinematic Adaptation Strategy (Act III)",
+                tradeoffDesc: "Nuance is discarded for emotional catharsis. Real-life failures occurring later in life are edited out or reframed into an unambiguous cinematic triumph accompanied by swelling musical score.",
+                label: "Act III (Resolution)"
+            }
+        ];
+
+        function updateTimelineState() {
+            const val = document.getElementById('compression-slider').value;
+            const state = timelineStates[val];
+
+            document.getElementById('act-tag').innerText = state.tag;
+            document.getElementById('display-title').innerText = state.title;
+            document.getElementById('display-desc').innerText = state.desc;
+            document.getElementById('tradeoff-title').innerText = state.tradeoffTitle;
+            document.getElementById('tradeoff-desc').innerText = state.tradeoffDesc;
+            document.getElementById('slider-val').innerText = state.label;
+        }
+    </script>
+</body>
+</html>
